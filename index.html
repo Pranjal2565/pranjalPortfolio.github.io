@@ -697,7 +697,6 @@
 
         <section id="about" class="hero">
             <h1>Hi, I'm <span>Pranjal Bhardwaj</span></h1>
-            <h2> </h2>
             <h2 class="typing-text"></h2>  
             <br>
             <p>I am a B.Tech CSE engineering student and self-driven developer with a passion for building, debugging, and 
@@ -892,42 +891,43 @@
         <script >
             // Typing animation for hero section
             const typingText = document.querySelector('.typing-text');
-            const texts = ["2nd yr Student","Web Developer", "UI/UX Enthusiast", "Problem Solver", "2D/3D Game Developer"
-                , "Blender  ", "Team Player"];
-            let textIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
-            let isEnd = false;
+const texts = ["2nd yr Student", "Web Developer", "UI/UX Enthusiast", "Problem Solver", "2D/3D Game Developer", "Blender", "Team Player"];
+let textIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
 
-            function type() {
-                const currentText = texts[textIndex];
-                
-                if (isDeleting) {
-                    typingText.textContent = currentText.substring(0, charIndex - 1);
-                    charIndex--;
-                } else {
-                    typingText.textContent = currentText.substring(0, charIndex + 1);
-                    charIndex++;
-                }
+const staticLabel = "Title: "; // <- this stays fixed
 
-                if (!isDeleting && charIndex === currentText.length) {
-                    isEnd = true;
-                    isDeleting = true;
-                    setTimeout(type, 1500);
-                } else if (isDeleting && charIndex === 0) {
-                    isDeleting = false;
-                    textIndex++;
-                    if (textIndex === texts.length) {
-                        textIndex = 0;
-                    }
-                    setTimeout(type, 500);
-                } else {    
-                    const typingSpeed = isDeleting ? 100 : 150;
-                    setTimeout(type, typingSpeed);
-                }
-            }
+function type() {
+    const currentText = texts[textIndex];
+    let displayedText;
 
-            setTimeout(type, 2000);
+    if (isDeleting) {
+        charIndex--;
+    } else {
+        charIndex++;
+    }
+
+    // Only the dynamic part is animated, but the static label is prepended
+    displayedText = staticLabel + currentText.substring(0, charIndex);
+    typingText.textContent = displayedText;
+
+    if (!isDeleting && charIndex === currentText.length) {
+        isDeleting = true;
+        setTimeout(type, 1500);
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        textIndex++;
+        if (textIndex === texts.length) textIndex = 0;
+        setTimeout(type, 500);
+    } else {
+        const typingSpeed = isDeleting ? 100 : 150;
+        setTimeout(type, typingSpeed);
+    }
+}
+
+setTimeout(type, 2000);
+
         </script>
     </div>
 </body>
