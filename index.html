@@ -1167,8 +1167,25 @@ function type() {
 
 setTimeout(type, 2000);
 
+            const goToTopBtn = document.getElementById('goToTop');
+    
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    goToTopBtn.classList.add('show');
+                } else {
+                    goToTopBtn.classList.remove('show');
+                }
+            });
+    
+            goToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
         </script>
     </div>
+    <button id="goToTop" aria-label="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 </body>
 </html>
 
