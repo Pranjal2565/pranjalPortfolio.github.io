@@ -610,6 +610,41 @@
                 transform: translateX(0);
             }
         }
+
+        /* Go to Top Button */
+        #goToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: var(--light);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        #goToTop.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        #goToTop:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
         
         @media (max-width: 768px) {
             .hero h1 {
